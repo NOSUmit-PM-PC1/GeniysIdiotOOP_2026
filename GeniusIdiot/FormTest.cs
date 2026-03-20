@@ -12,16 +12,28 @@ namespace GeniusIdiot
 {
     public partial class FormTest : Form
     {
-        string[] questions = {"2 + 2 * 2", "2 руках 10 пальцев, сколько пальцев на 5 руках", "бревно разделили на 10 частей, сколько сделали распилов", "укол делают каждые полчаса, сколько минут надо 3 укола", "горело 5 свечей 2 погасло, сколько осталось" };
-        int[] rightAnswer = { 6, 25, 9, 60, 2};
-        int[] orderQuestions = { 2, 4, 0, 1, 3 };
-
         string[] diagnoze = { "Идиот", "Дебил", "Дурак", "Норма", "Талант", "Гений" };
 
         int countRightAnswer = 0;
         int numberQuestion = 0;
 
         bool endTest = false;
+
+        List<Question> listTestQuestions = new List<Question>();        
+        void loadQuestions()
+        {
+            string[] questions = { "2 + 2 * 2", "2 руках 10 пальцев, сколько пальцев на 5 руках", "бревно разделили на 10 частей, сколько сделали распилов", "укол делают каждые полчаса, сколько минут надо 3 укола", "горело 5 свечей 2 погасло, сколько осталось" };
+            int[] rightAnswer = { 6, 25, 9, 60, 2 };
+            for (int i = 0; i < questions.Length; i++)
+            {
+                Question q = new Question(questions[i], rightAnswer[i]);
+                listTestQuestions.Add(q);
+            }
+        }
+
+        int[] orderQuestions = { 2, 4, 0, 1, 3 };
+
+        
 
         void shuffleOrderQuestion()
         {
@@ -45,7 +57,7 @@ namespace GeniusIdiot
             if (!endTest)
             {
                 int userAnswer = Convert.ToInt32(textBoxUserAnswer.Text);
-                if (userAnswer == rightAnswer[orderQuestions[numberQuestion]])
+                if (listTestQuestions[orderQuestions[numberQuestion]].CheckAnswer(userAnswer))
                 {
                     countRightAnswer++;
                 }
@@ -54,11 +66,11 @@ namespace GeniusIdiot
         private void buttonCheckUserAnswer_Click(object sender, EventArgs e)
         {
            
-            if (numberQuestion < questions.Length - 1)
+            if (numberQuestion < listTestQuestions.Count - 1)
             {
                 checkAnswer();
                 numberQuestion++;
-                labelQuestion.Text = questions[orderQuestions[numberQuestion]];
+                labelQuestion.Text = listTestQuestions[orderQuestions[numberQuestion]].ShowQuestion();
             }
             else
             {
@@ -71,7 +83,8 @@ namespace GeniusIdiot
         private void FormTest_Load(object sender, EventArgs e)
         {
             shuffleOrderQuestion();
-            labelQuestion.Text = questions[orderQuestions[numberQuestion]];
+            loadQuestions();
+            labelQuestion.Text = listTestQuestions[orderQuestions[numberQuestion]].ShowQuestion();
         }
     }
 }
