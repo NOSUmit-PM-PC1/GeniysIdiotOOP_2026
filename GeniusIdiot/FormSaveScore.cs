@@ -31,7 +31,10 @@ namespace GeniusIdiot
                 user.Name = userName;
                 //user.SetScore(200);
                 user.Score = 20;
-                string json = JsonSerializer.Serialize(user);
+                var UsersRep = new List<User>();
+                UsersRep.Add(user);
+                string json = JsonSerializer.Serialize(UsersRep);
+                //string json = JsonSerializer.Serialize(user);
                 StreamWriter sr = new StreamWriter("data.json");
                 sr.Write(json);
                 sr.Close();

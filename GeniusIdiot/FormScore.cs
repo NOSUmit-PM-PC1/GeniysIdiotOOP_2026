@@ -24,8 +24,8 @@ namespace GeniusIdiot
             StreamReader sr = new StreamReader("data.json");
             var jsonStr = sr.ReadToEnd();
             sr.Close();
-            User user = JsonSerializer.Deserialize<User>(jsonStr);
-            label1.Text = user.ToString();
+            var users = JsonSerializer.Deserialize<UsersRepository>(jsonStr);
+            label1.Text = users.ToString();
         }
     }
 }

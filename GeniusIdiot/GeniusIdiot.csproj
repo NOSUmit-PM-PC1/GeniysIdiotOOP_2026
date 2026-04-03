@@ -99,6 +99,7 @@
     <Compile Include="Question.cs" />
     <Compile Include="QuestionsRepository.cs" />
     <Compile Include="User.cs" />
+    <Compile Include="UsersRepository.cs" />
     <EmbeddedResource Include="FormSaveScore.resx">
       <DependentUpon>FormSaveScore.cs</DependentUpon>
     </EmbeddedResource>
