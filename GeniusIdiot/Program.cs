@@ -16,7 +16,9 @@ namespace GeniusIdiot
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormTest());
+            //Application.Run(new FormTest());
+            //Application.Run(new FormSaveScore());
+            Application.Run(new FormScore());
         }
     }
 }

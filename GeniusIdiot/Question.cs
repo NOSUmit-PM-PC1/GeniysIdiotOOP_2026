@@ -11,6 +11,8 @@ namespace GeniusIdiot
         string text;
         int answer;
 
+        public string Text { get; }
+
         public Question(string txt, int ans )
         {
             this.text = txt;
