@@ -19,13 +19,18 @@ namespace GeniusIdiot
             InitializeComponent();
         }
 
-        private void FormScore_Load(object sender, EventArgs e)
+        public static UsersRepository ReadFromFile(string fileName)
         {
-            StreamReader sr = new StreamReader("data.json");
+            StreamReader sr = new StreamReader(fileName);
             var jsonStr = sr.ReadToEnd();
             sr.Close();
-            var users = JsonSerializer.Deserialize<UsersRepository>(jsonStr);
-            label1.Text = users.ToString();
+            return JsonSerializer.Deserialize<UsersRepository>(jsonStr);
+        }
+
+        private void FormScore_Load(object sender, EventArgs e)
+        {
+            
+            label1.Text = ReadFromFile("data.json").ToString();
         }
     }
 }

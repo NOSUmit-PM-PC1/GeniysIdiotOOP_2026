@@ -3,7 +3,7 @@
 namespace GeniusIdiot
 {
     [Serializable]
-    class User
+    public class User
     {
         // поля
         
@@ -45,7 +45,7 @@ namespace GeniusIdiot
 
         public void Update(User user)
         {
-            if (this.score > user.score)
+            if (this.score < user.score)
             { 
                 this.Score = user.score;
                 this.timeSecond = user.TimeSecond;

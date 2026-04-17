@@ -35,7 +35,7 @@ namespace GeniusIdiot
         }
         private void buttonCheckUserAnswer_Click(object sender, EventArgs e)
         {
-           
+
             if (!questions.EndOfQuestions())
             {
                 checkAnswer();
@@ -45,8 +45,11 @@ namespace GeniusIdiot
             {
                 checkAnswer();
                 endTest = true;
-
+                FormSaveScore formSaveScore = new FormSaveScore(questions.GetScore(countRightAnswer));
+                formSaveScore.ShowDialog();
                 MessageBox.Show(diagnoze[countRightAnswer]);
+                FormScore formScore = new FormScore();
+                formScore.ShowDialog();
             }
         }
 

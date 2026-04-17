@@ -15,9 +15,16 @@ namespace GeniusIdiot
 {
     public partial class FormSaveScore : Form
     {
+        double score;
         public FormSaveScore()
         {
             InitializeComponent();
+        }
+
+        public FormSaveScore(double score)
+        {
+            InitializeComponent();
+            this.score = score;
         }
 
         private void buttonSaveScore_Click(object sender, EventArgs e)
@@ -30,8 +37,8 @@ namespace GeniusIdiot
                 User user = new User();
                 user.Name = userName;
                 //user.SetScore(200);
-                user.Score = 20;
-                var UsersRep = new List<User>();
+                user.Score = this.score;
+                var UsersRep = FormScore.ReadFromFile("data.json");
                 UsersRep.Add(user);
                 string json = JsonSerializer.Serialize(UsersRep);
                 //string json = JsonSerializer.Serialize(user);

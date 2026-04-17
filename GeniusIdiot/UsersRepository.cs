@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GeniusIdiot
 {
     [Serializable]
-    class UsersRepository
+    public class UsersRepository
     {
         List<User> users = new List<User>();
         
@@ -17,7 +14,11 @@ namespace GeniusIdiot
             {
                 return new List<User>(users);
             }
-            set { }
+            set 
+            {
+                foreach (var user in value)
+                    users.Add(user);               
+            }
         }
         public void Add(User newUser)
         {
@@ -32,6 +33,12 @@ namespace GeniusIdiot
             users.Add(newUser);
         }
 
-
+        public override string ToString()
+        {
+            string result = "";
+            foreach(var user in Items) 
+                result += user.ToString() + "\n";
+            return result;
+        }
     }
 }

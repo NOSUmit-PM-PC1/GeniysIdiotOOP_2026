@@ -55,5 +55,10 @@ namespace GeniusIdiot
             }
         }
 
+        public double GetScore(int countRightAnswers)
+        {
+            return Math.Round((double)countRightAnswers / listTestQuestions.Count * 100, 2);
+        }
+
     }
 }
